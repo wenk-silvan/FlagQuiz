@@ -7,11 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
-
+    private var submitted: Boolean = false
     private var currentPosition: Int = 1
     private var questionsList: ArrayList<Question>? = null
     private var selectedOptionPosition: Int = 0
@@ -25,10 +26,24 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_two.setOnClickListener(this)
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
+        btn_submit.setOnClickListener(this)
+    }
+
+    private fun answerView(answer: Int, drawableView: Int) {
+        when(answer) {
+            1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
+            2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
+            3 -> tv_option_three.background = ContextCompat.getDrawable(this, drawableView)
+            4 -> tv_option_four.background = ContextCompat.getDrawable(this, drawableView)
+        }
     }
 
     private fun setQuestion() {
         val question = this.questionsList!![this.currentPosition - 1]
+        this.submitted = false
+        defaultOptionsView()
+        btn_submit.text = "SUBMIT"
+
         progressBar.progress = this.currentPosition
         tv_progress.text = "${this.currentPosition}/${progressBar.max}"
         tv_question.text = question.question
@@ -55,6 +70,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun selectedOptionView(tv: TextView, selectedOptionNumber: Int) {
+        if (this.submitted) return
         this.defaultOptionsView()
         this.selectedOptionPosition = selectedOptionNumber
         tv.setTextColor(Color.parseColor("#363A43"))
@@ -69,6 +85,43 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_option_two -> this.selectedOptionView(tv_option_two, 2)
             R.id.tv_option_three -> this.selectedOptionView(tv_option_three, 3)
             R.id.tv_option_four -> this.selectedOptionView(tv_option_four, 4)
+            R.id.btn_submit -> {
+                if(this.submitted) { // set questions
+                    this.currentPosition++
+                    when {
+                        this.currentPosition <= this.questionsList!!.size -> {
+                            setQuestion()
+                        } else -> Toast.makeText(
+                            this,
+                            "Successfully completed the quiz",
+                            Toast.LENGTH_LONG).show()
+                    }
+                } else if (this.selectedOptionPosition == 0) {
+                    Toast.makeText(
+                        this,
+                        "Select your answer",
+                        Toast.LENGTH_SHORT).show()
+                } else { // submit answer
+                    val question = this.questionsList?.get(this.currentPosition - 1)
+                    if(question!!.correctAnswer != this.selectedOptionPosition) {
+                        Toast.makeText(
+                            this,
+                            "Wrong answer",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Correct answer.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+
+                    btn_submit.text = if (this.currentPosition == this.questionsList!!.size)
+                        "QUIZ FINISHED" else "NEXT QUESTION"
+                    this.selectedOptionPosition = 0
+                    this.submitted = true
+                }
+            }
         }
     }
 
