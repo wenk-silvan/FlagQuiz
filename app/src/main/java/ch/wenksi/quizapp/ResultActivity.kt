@@ -13,7 +13,6 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-
         tv_congratulations.text = "Congratulations, ${intent.getStringExtra(Constants.USER_NAME)}!"
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0).toString()
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0).toString()

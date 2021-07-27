@@ -15,21 +15,11 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:textColor="#363A43"
-            android:textSize="22sp"
-            android:text="What country does this flag belong to?" />
-
         <ImageView
             android:id="@+id/iv_flag"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/flag_ad" />
 
         <LinearLayout
@@ -38,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="5dp">
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -64,7 +54,7 @@
             android:id="@+id/tv_option_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
             android:padding="15dp"
@@ -76,7 +66,7 @@
             android:id="@+id/tv_option_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
             android:padding="15dp"
@@ -88,7 +78,7 @@
             android:id="@+id/tv_option_three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
             android:padding="15dp"
@@ -100,7 +90,7 @@
             android:id="@+id/tv_option_four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/default_option_border_bg"
             android:gravity="center"
             android:padding="15dp"
@@ -113,12 +103,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:text="Submit" />
-
-
     </LinearLayout>
 </ScrollView>

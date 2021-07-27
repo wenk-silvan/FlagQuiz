@@ -51,7 +51,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         progressBar.progress = this.currentPosition
         tv_progress.text = "${this.currentPosition}/${progressBar.max}"
-        tv_question.text = question.question
         iv_flag.setImageResource(question.image)
         tv_option_one.text = question.optionOne
         tv_option_two.text = question.optionTwo
