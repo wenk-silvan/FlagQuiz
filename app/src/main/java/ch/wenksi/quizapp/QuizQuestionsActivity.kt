@@ -1,5 +1,6 @@
 package ch.wenksi.quizapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +17,14 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var currentPosition: Int = 1
     private var questionsList: ArrayList<Question>? = null
     private var selectedOptionPosition: Int = 0
+    private var correctAnswers = 0
+    private var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
+        this.userName = intent.getStringExtra(Constants.USER_NAME)
+
         this.questionsList = Constants.getQuestions()
         setQuestion()
         tv_option_one.setOnClickListener(this)
@@ -91,10 +96,14 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     when {
                         this.currentPosition <= this.questionsList!!.size -> {
                             setQuestion()
-                        } else -> Toast.makeText(
-                            this,
-                            "Successfully completed the quiz",
-                            Toast.LENGTH_LONG).show()
+                        } else -> {
+                            val intent = Intent(this, ResultActivity::class.java)
+                            intent.putExtra(Constants.USER_NAME, this.userName)
+                            intent.putExtra(Constants.CORRECT_ANSWERS, this.correctAnswers)
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, this.questionsList!!.size)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 } else if (this.selectedOptionPosition == 0) {
                     Toast.makeText(
@@ -109,10 +118,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             "Wrong answer",
                             Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(
-                            this,
-                            "Correct answer.",
-                            Toast.LENGTH_SHORT).show()
+                        this.correctAnswers++
                     }
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
 
