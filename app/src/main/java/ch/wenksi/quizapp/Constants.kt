@@ -7,7 +7,70 @@ object Constants {
     const val TOTAL_QUESTIONS: String = "total_question"
     const val CORRECT_ANSWERS: String = "correct_answers"
 
-    fun getNations(): ArrayList<Nation> {
+    fun getQuestions(): ArrayList<Question> {
+        val nationList = this.getNations()
+        val questionsList = ArrayList<Question>()
+
+        for (i in 1..10) {
+            var rand = Random.nextInt(0, nationList.size - 1)
+            val correctNation: Nation = nationList[rand]
+            nationList.removeAt(rand)
+
+            rand = Random.nextInt(0, nationList.size - 1)
+            val wrongNationOne: Nation = nationList[rand]
+            nationList.removeAt(rand)
+
+            rand = Random.nextInt(0, nationList.size - 1)
+            val wrongNationTwo: Nation = nationList[rand]
+            nationList.removeAt(rand)
+
+            rand = Random.nextInt(0, nationList.size - 1)
+            val wrongNationThree: Nation = nationList[rand]
+            nationList.removeAt(rand)
+
+            when (val correctAnswer = Random.nextInt(1, 4)) {
+                1 -> questionsList.add(Question(
+                    i, "What country does this flag belong to?",
+                    correctNation.image,
+                    correctNation.name,
+                    wrongNationOne.name,
+                    wrongNationTwo.name,
+                    wrongNationThree.name,
+                    correctAnswer
+                ))
+                2 -> questionsList.add(Question(
+                    i, "What country does this flag belong to?",
+                    correctNation.image,
+                    wrongNationOne.name,
+                    correctNation.name,
+                    wrongNationTwo.name,
+                    wrongNationThree.name,
+                    correctAnswer
+                ))
+                3 -> questionsList.add(Question(
+                    i, "What country does this flag belong to?",
+                    correctNation.image,
+                    wrongNationOne.name,
+                    wrongNationTwo.name,
+                    correctNation.name,
+                    wrongNationThree.name,
+                    correctAnswer
+                ))
+                4 -> questionsList.add(Question(
+                    i, "What country does this flag belong to?",
+                    correctNation.image,
+                    wrongNationOne.name,
+                    wrongNationTwo.name,
+                    wrongNationThree.name,
+                    correctNation.name,
+                    correctAnswer
+                ))
+            }
+        }
+        return questionsList
+    }
+
+    private fun getNations(): ArrayList<Nation> {
         val nationList = ArrayList<Nation>()
         nationList.add(Nation(1, R.drawable.flag_ad, "Andorra"))
         nationList.add(Nation(2, R.drawable.flag_ae, "United Arab Emirates"))
@@ -93,239 +156,175 @@ object Constants {
         nationList.add(Nation(82, R.drawable.flag_gd, "Grenada"))
         nationList.add(Nation(83, R.drawable.flag_ge, "Georgia"))
         nationList.add(Nation(84, R.drawable.flag_gf, "French Guiana"))
-        nationList.add(Nation(85, R.drawable.flag_gg, "Andorra"))
-        nationList.add(Nation(86, R.drawable.flag_gh, "Andorra"))
-        nationList.add(Nation(87, R.drawable.flag_gi, "Andorra"))
-        nationList.add(Nation(88, R.drawable.flag_gl, "Andorra"))
-        nationList.add(Nation(89, R.drawable.flag_gm, "Andorra"))
-        nationList.add(Nation(90, R.drawable.flag_gn, "Ghana"))
-        nationList.add(Nation(91, R.drawable.flag_gp, "Andorra"))
-        nationList.add(Nation(92, R.drawable.flag_gq, "Andorra"))
+        nationList.add(Nation(85, R.drawable.flag_gg, "Guernsey"))
+        nationList.add(Nation(86, R.drawable.flag_gh, "Ghana"))
+        nationList.add(Nation(87, R.drawable.flag_gi, "Gibraltar"))
+        nationList.add(Nation(88, R.drawable.flag_gl, "Greenland"))
+        nationList.add(Nation(89, R.drawable.flag_gm, "Gambia"))
+        nationList.add(Nation(90, R.drawable.flag_gn, "Guinea"))
+        nationList.add(Nation(91, R.drawable.flag_gp, "Guadeloupe"))
+        nationList.add(Nation(92, R.drawable.flag_gq, "Equatorial Guinea"))
         nationList.add(Nation(93, R.drawable.flag_gr, "Greece"))
-        nationList.add(Nation(94, R.drawable.flag_gs, "Andorra"))
-        nationList.add(Nation(95, R.drawable.flag_gt, "Andorra"))
-        nationList.add(Nation(96, R.drawable.flag_gu, "Andorra"))
-        nationList.add(Nation(97, R.drawable.flag_gw, "Andorra"))
-        nationList.add(Nation(98, R.drawable.flag_gy, "Andorra"))
+        nationList.add(Nation(94, R.drawable.flag_gs, "South Sandwich Islands"))
+        nationList.add(Nation(95, R.drawable.flag_gt, "Guatemala"))
+        nationList.add(Nation(96, R.drawable.flag_gu, "Guam"))
+        nationList.add(Nation(97, R.drawable.flag_gw, "Guinea-Bissau"))
+        nationList.add(Nation(98, R.drawable.flag_gy, "Guyana"))
         nationList.add(Nation(99, R.drawable.flag_hk, "Hong Kong"))
-        nationList.add(Nation(100, R.drawable.flag_hm, "Andorra"))
-        nationList.add(Nation(101, R.drawable.flag_hn, "Andorra"))
-        nationList.add(Nation(102, R.drawable.flag_hr, "Andorra"))
-        nationList.add(Nation(103, R.drawable.flag_ht, "Andorra"))
-        nationList.add(Nation(104, R.drawable.flag_hu, "Andorra"))
-        nationList.add(Nation(105, R.drawable.flag_id, "Andorra"))
-        nationList.add(Nation(106, R.drawable.flag_ie, "Andorra"))
+        nationList.add(Nation(100, R.drawable.flag_hm, "Heard and McDonald Islands"))
+        nationList.add(Nation(101, R.drawable.flag_hn, "Honduras"))
+        nationList.add(Nation(102, R.drawable.flag_hr, "Croatia"))
+        nationList.add(Nation(103, R.drawable.flag_ht, "Haiti"))
+        nationList.add(Nation(104, R.drawable.flag_hu, "Hungary"))
+        nationList.add(Nation(105, R.drawable.flag_id, "Indonesia"))
+        nationList.add(Nation(106, R.drawable.flag_ie, "Ireland"))
         nationList.add(Nation(107, R.drawable.flag_il, "Israel"))
-        nationList.add(Nation(108, R.drawable.flag_im, "Andorra"))
+        nationList.add(Nation(108, R.drawable.flag_im, "Isle of Man"))
         nationList.add(Nation(109, R.drawable.flag_in, "India"))
-        nationList.add(Nation(110, R.drawable.flag_io, "Andorra"))
-        nationList.add(Nation(111, R.drawable.flag_iq, "Andorra"))
-        nationList.add(Nation(112, R.drawable.flag_ir, "Ireland"))
-        nationList.add(Nation(113, R.drawable.flag_it, "Italia"))
-        nationList.add(Nation(114, R.drawable.flag_je, "Andorra"))
+        nationList.add(Nation(110, R.drawable.flag_io, "British Indian Ocean Territory"))
+        nationList.add(Nation(111, R.drawable.flag_iq, "Iraq"))
+        nationList.add(Nation(112, R.drawable.flag_ir, "Iran"))
+        nationList.add(Nation(113, R.drawable.flag_it, "Italy"))
+        nationList.add(Nation(114, R.drawable.flag_je, "Jersey"))
         nationList.add(Nation(115, R.drawable.flag_jm, "Jamaica"))
-        nationList.add(Nation(116, R.drawable.flag_jo, "Andorra"))
+        nationList.add(Nation(116, R.drawable.flag_jo, "Jordan"))
         nationList.add(Nation(117, R.drawable.flag_jp, "Japan"))
-        nationList.add(Nation(118, R.drawable.flag_je, "Andorra"))
-        nationList.add(Nation(119, R.drawable.flag_ke, "Andorra"))
-        nationList.add(Nation(120, R.drawable.flag_kg, "Andorra"))
-        nationList.add(Nation(121, R.drawable.flag_kh, "Andorra"))
-        nationList.add(Nation(122, R.drawable.flag_ki, "Andorra"))
-        nationList.add(Nation(123, R.drawable.flag_km, "Andorra"))
-        nationList.add(Nation(124, R.drawable.flag_kn, "Andorra"))
-        nationList.add(Nation(125, R.drawable.flag_kp, "Andorra"))
+        nationList.add(Nation(119, R.drawable.flag_ke, "Kenya"))
+        nationList.add(Nation(120, R.drawable.flag_kg, "Kyrgyzstan"))
+        nationList.add(Nation(121, R.drawable.flag_kh, "Cambodia"))
+        nationList.add(Nation(122, R.drawable.flag_ki, "Kiribati"))
+        nationList.add(Nation(123, R.drawable.flag_km, "Comoros"))
+        nationList.add(Nation(124, R.drawable.flag_kn, "Saint Kitts and Nevis"))
+        nationList.add(Nation(125, R.drawable.flag_kp, "North Korea"))
         nationList.add(Nation(126, R.drawable.flag_kr, "South Korea"))
-        nationList.add(Nation(127, R.drawable.flag_kw, "Andorra"))
-        nationList.add(Nation(128, R.drawable.flag_ky, "Andorra"))
-        nationList.add(Nation(129, R.drawable.flag_kz, "Andorra"))
-        nationList.add(Nation(130, R.drawable.flag_la, "Andorra"))
-        nationList.add(Nation(131, R.drawable.flag_lb, "Andorra"))
-        nationList.add(Nation(132, R.drawable.flag_lc, "Andorra"))
-        nationList.add(Nation(133, R.drawable.flag_li, "Andorra"))
-        nationList.add(Nation(134, R.drawable.flag_lk, "Andorra"))
-        nationList.add(Nation(135, R.drawable.flag_lr, "Andorra"))
-        nationList.add(Nation(136, R.drawable.flag_ls, "Andorra"))
-        nationList.add(Nation(137, R.drawable.flag_lt, "Andorra"))
-        nationList.add(Nation(138, R.drawable.flag_lu, "Andorra"))
+        nationList.add(Nation(127, R.drawable.flag_kw, "Kuwait"))
+        nationList.add(Nation(128, R.drawable.flag_ky, "Cayman Islands"))
+        nationList.add(Nation(129, R.drawable.flag_kz, "Kazakhstan"))
+        nationList.add(Nation(130, R.drawable.flag_la, "Republic of Lao"))
+        nationList.add(Nation(131, R.drawable.flag_lb, "Lebanon"))
+        nationList.add(Nation(132, R.drawable.flag_lc, "Saint Lucia"))
+        nationList.add(Nation(133, R.drawable.flag_li, "Liechtenstein"))
+        nationList.add(Nation(134, R.drawable.flag_lk, "Sri Lanka"))
+        nationList.add(Nation(135, R.drawable.flag_lr, "Liberia"))
+        nationList.add(Nation(136, R.drawable.flag_ls, "Lesotho"))
+        nationList.add(Nation(137, R.drawable.flag_lt, "Lithuania"))
+        nationList.add(Nation(138, R.drawable.flag_lu, "Luxembourg"))
         nationList.add(Nation(139, R.drawable.flag_lv, "Latvia"))
-        nationList.add(Nation(140, R.drawable.flag_ly, "Andorra"))
-        nationList.add(Nation(141, R.drawable.flag_ma, "Andorra"))
-        nationList.add(Nation(142, R.drawable.flag_mc, "Andorra"))
-        nationList.add(Nation(143, R.drawable.flag_md, "Andorra"))
-        nationList.add(Nation(144, R.drawable.flag_me, "Andorra"))
-        nationList.add(Nation(145, R.drawable.flag_mf, "Andorra"))
-        nationList.add(Nation(146, R.drawable.flag_mg, "Andorra"))
-        nationList.add(Nation(147, R.drawable.flag_mh, "Andorra"))
-        nationList.add(Nation(148, R.drawable.flag_mk, "Andorra"))
-        nationList.add(Nation(149, R.drawable.flag_ml, "Andorra"))
-        nationList.add(Nation(150, R.drawable.flag_mm, "Andorra"))
-        nationList.add(Nation(151, R.drawable.flag_mn, "Andorra"))
-        nationList.add(Nation(152, R.drawable.flag_mo, "Andorra"))
-        nationList.add(Nation(153, R.drawable.flag_mp, "Andorra"))
-        nationList.add(Nation(154, R.drawable.flag_mq, "Andorra"))
-        nationList.add(Nation(155, R.drawable.flag_mr, "Andorra"))
-        nationList.add(Nation(156, R.drawable.flag_ms, "Andorra"))
-        nationList.add(Nation(157, R.drawable.flag_mt, "Andorra"))
-        nationList.add(Nation(158, R.drawable.flag_mu, "Andorra"))
-        nationList.add(Nation(159, R.drawable.flag_mv, "Andorra"))
-        nationList.add(Nation(160, R.drawable.flag_mw, "Andorra"))
-        nationList.add(Nation(161, R.drawable.flag_mx, "Andorra"))
-        nationList.add(Nation(162, R.drawable.flag_my, "Andorra"))
-        nationList.add(Nation(163, R.drawable.flag_mz, "Andorra"))
-        nationList.add(Nation(164, R.drawable.flag_na, "Andorra"))
-        nationList.add(Nation(165, R.drawable.flag_nc, "Andorra"))
-        nationList.add(Nation(166, R.drawable.flag_ne, "Andorra"))
-        nationList.add(Nation(167, R.drawable.flag_nf, "Andorra"))
+        nationList.add(Nation(140, R.drawable.flag_ly, "Libya"))
+        nationList.add(Nation(141, R.drawable.flag_ma, "Morocco"))
+        nationList.add(Nation(142, R.drawable.flag_mc, "Monaco"))
+        nationList.add(Nation(143, R.drawable.flag_md, "Moldova"))
+        nationList.add(Nation(144, R.drawable.flag_me, "Montenegro"))
+        nationList.add(Nation(145, R.drawable.flag_mf, "Saint Martin"))
+        nationList.add(Nation(146, R.drawable.flag_mg, "Madagascar"))
+        nationList.add(Nation(147, R.drawable.flag_mh, "Marshall Islands"))
+        nationList.add(Nation(148, R.drawable.flag_mk, "Macedonia"))
+        nationList.add(Nation(149, R.drawable.flag_ml, "Mali"))
+        nationList.add(Nation(150, R.drawable.flag_mm, "Myanmar"))
+        nationList.add(Nation(151, R.drawable.flag_mn, "Mongolia"))
+        nationList.add(Nation(152, R.drawable.flag_mo, "Macao"))
+        nationList.add(Nation(153, R.drawable.flag_mp, "Northern Mariana Islands"))
+        nationList.add(Nation(154, R.drawable.flag_mq, "Martinique"))
+        nationList.add(Nation(155, R.drawable.flag_mr, "Mauritania"))
+        nationList.add(Nation(156, R.drawable.flag_ms, "Montserrat"))
+        nationList.add(Nation(157, R.drawable.flag_mt, "Malta"))
+        nationList.add(Nation(158, R.drawable.flag_mu, "Mauritius"))
+        nationList.add(Nation(159, R.drawable.flag_mv, "Maldives"))
+        nationList.add(Nation(160, R.drawable.flag_mw, "Malawi"))
+        nationList.add(Nation(161, R.drawable.flag_mx, "Mexico"))
+        nationList.add(Nation(162, R.drawable.flag_my, "Malaysia"))
+        nationList.add(Nation(163, R.drawable.flag_mz, "Mozambique"))
+        nationList.add(Nation(164, R.drawable.flag_na, "Namibia"))
+        nationList.add(Nation(165, R.drawable.flag_nc, "New Caledonia"))
+        nationList.add(Nation(166, R.drawable.flag_ne, "Niger"))
+        nationList.add(Nation(167, R.drawable.flag_nf, "Norfolk Islands"))
         nationList.add(Nation(168, R.drawable.flag_ng, "Nigeria"))
-        nationList.add(Nation(169, R.drawable.flag_ni, "Andorra"))
+        nationList.add(Nation(169, R.drawable.flag_ni, "Nicaragua"))
         nationList.add(Nation(170, R.drawable.flag_nl, "Netherlands"))
         nationList.add(Nation(171, R.drawable.flag_no, "Norway"))
-        nationList.add(Nation(172, R.drawable.flag_np, "Andorra"))
-        nationList.add(Nation(173, R.drawable.flag_nr, "Andorra"))
+        nationList.add(Nation(172, R.drawable.flag_np, "Nepal"))
+        nationList.add(Nation(173, R.drawable.flag_nr, "Nauru"))
         nationList.add(Nation(174, R.drawable.flag_nu, "Andorra"))
         nationList.add(Nation(175, R.drawable.flag_nz, "New Zealand"))
-        nationList.add(Nation(176, R.drawable.flag_om, "Andorra"))
-        nationList.add(Nation(177, R.drawable.flag_pa, "Andorra"))
-        nationList.add(Nation(178, R.drawable.flag_pe, "Andorra"))
-        nationList.add(Nation(179, R.drawable.flag_pf, "Andorra"))
-        nationList.add(Nation(180, R.drawable.flag_pg, "Andorra"))
-        nationList.add(Nation(181, R.drawable.flag_ph, "Andorra"))
-        nationList.add(Nation(182, R.drawable.flag_pk, "Andorra"))
+        nationList.add(Nation(176, R.drawable.flag_om, "Oman"))
+        nationList.add(Nation(177, R.drawable.flag_pa, "Panama"))
+        nationList.add(Nation(178, R.drawable.flag_pe, "Peru"))
+        nationList.add(Nation(179, R.drawable.flag_pf, "French Polynesia"))
+        nationList.add(Nation(180, R.drawable.flag_pg, "Papua New Guinea"))
+        nationList.add(Nation(181, R.drawable.flag_ph, "Philippines"))
+        nationList.add(Nation(182, R.drawable.flag_pk, "Pakistan"))
         nationList.add(Nation(183, R.drawable.flag_pl, "Poland"))
-        nationList.add(Nation(184, R.drawable.flag_pm, "Andorra"))
-        nationList.add(Nation(185, R.drawable.flag_pn, "Andorra"))
-        nationList.add(Nation(186, R.drawable.flag_pr, "Andorra"))
-        nationList.add(Nation(187, R.drawable.flag_ps, "Andorra"))
-        nationList.add(Nation(188, R.drawable.flag_pt, "Andorra"))
-        nationList.add(Nation(189, R.drawable.flag_pw, "Andorra"))
-        nationList.add(Nation(190, R.drawable.flag_py, "Andorra"))
-        nationList.add(Nation(191, R.drawable.flag_qa, "Andorra"))
-        nationList.add(Nation(192, R.drawable.flag_re, "Andorra"))
+        nationList.add(Nation(184, R.drawable.flag_pm, "Saint Pierre and Miquelon"))
+        nationList.add(Nation(185, R.drawable.flag_pn, "Pitcairn"))
+        nationList.add(Nation(186, R.drawable.flag_pr, "Puerto Rico"))
+        nationList.add(Nation(187, R.drawable.flag_ps, "Palestinian Territories"))
+        nationList.add(Nation(188, R.drawable.flag_pt, "Portugal"))
+        nationList.add(Nation(189, R.drawable.flag_pw, "Palau"))
+        nationList.add(Nation(190, R.drawable.flag_py, "Paraguay"))
+        nationList.add(Nation(191, R.drawable.flag_qa, "Qatar"))
+        nationList.add(Nation(192, R.drawable.flag_re, "Reunion"))
         nationList.add(Nation(193, R.drawable.flag_ro, "Romania"))
-        nationList.add(Nation(194, R.drawable.flag_rs, "Andorra"))
+        nationList.add(Nation(194, R.drawable.flag_rs, "Serbia"))
         nationList.add(Nation(195, R.drawable.flag_ru, "Russia"))
-        nationList.add(Nation(196, R.drawable.flag_rw, "Andorra"))
+        nationList.add(Nation(196, R.drawable.flag_rw, "Rwanda"))
         nationList.add(Nation(197, R.drawable.flag_sa, "Saudi Arabia"))
-        nationList.add(Nation(198, R.drawable.flag_sb, "Andorra"))
-        nationList.add(Nation(199, R.drawable.flag_sc, "Andorra"))
-        nationList.add(Nation(200, R.drawable.flag_sd, "Andorra"))
+        nationList.add(Nation(198, R.drawable.flag_sb, "Solomon Islands"))
+        nationList.add(Nation(199, R.drawable.flag_sc, "Seychelles"))
+        nationList.add(Nation(200, R.drawable.flag_sd, "Sudan"))
         nationList.add(Nation(201, R.drawable.flag_se, "Sweden"))
-        nationList.add(Nation(202, R.drawable.flag_sg, "Andorra"))
-        nationList.add(Nation(203, R.drawable.flag_sh, "Andorra"))
-        nationList.add(Nation(204, R.drawable.flag_si, "Andorra"))
-        nationList.add(Nation(205, R.drawable.flag_sj, "Andorra"))
-        nationList.add(Nation(206, R.drawable.flag_sk, "Andorra"))
-        nationList.add(Nation(207, R.drawable.flag_sl, "Andorra"))
-        nationList.add(Nation(208, R.drawable.flag_sm, "Andorra"))
-        nationList.add(Nation(209, R.drawable.flag_sn, "Andorra"))
-        nationList.add(Nation(210, R.drawable.flag_so, "Andorra"))
-        nationList.add(Nation(211, R.drawable.flag_sr, "Andorra"))
-        nationList.add(Nation(212, R.drawable.flag_ss, "Andorra"))
-        nationList.add(Nation(213, R.drawable.flag_st, "Andorra"))
-        nationList.add(Nation(214, R.drawable.flag_sv, "Andorra"))
-        nationList.add(Nation(215, R.drawable.flag_sx, "Andorra"))
-        nationList.add(Nation(216, R.drawable.flag_sy, "Andorra"))
-        nationList.add(Nation(217, R.drawable.flag_sz, "Andorra"))
-        nationList.add(Nation(218, R.drawable.flag_tc, "Andorra"))
-        nationList.add(Nation(220, R.drawable.flag_td, "Andorra"))
-        nationList.add(Nation(221, R.drawable.flag_tf, "Andorra"))
+        nationList.add(Nation(202, R.drawable.flag_sg, "Singapore"))
+        nationList.add(Nation(203, R.drawable.flag_sh, "Saint Helena"))
+        nationList.add(Nation(204, R.drawable.flag_si, "Slovenia"))
+        nationList.add(Nation(205, R.drawable.flag_sj, "Svalbard and Jan Mayen"))
+        nationList.add(Nation(206, R.drawable.flag_sk, "Slovakia"))
+        nationList.add(Nation(207, R.drawable.flag_sl, "Sierra Leone"))
+        nationList.add(Nation(208, R.drawable.flag_sm, "San Marino"))
+        nationList.add(Nation(209, R.drawable.flag_sn, "Senegal"))
+        nationList.add(Nation(210, R.drawable.flag_so, "Somalia"))
+        nationList.add(Nation(211, R.drawable.flag_sr, "Suriname"))
+        nationList.add(Nation(212, R.drawable.flag_ss, "South Sudan"))
+        nationList.add(Nation(213, R.drawable.flag_st, "Sao Tome and Principe"))
+        nationList.add(Nation(214, R.drawable.flag_sv, "El Salvador"))
+        nationList.add(Nation(215, R.drawable.flag_sx, "Sint Maarten"))
+        nationList.add(Nation(216, R.drawable.flag_sy, "Syrian Arab Republic"))
+        nationList.add(Nation(217, R.drawable.flag_sz, "Swaziland"))
+        nationList.add(Nation(218, R.drawable.flag_tc, "Turks and Caicos Islands"))
+        nationList.add(Nation(220, R.drawable.flag_td, "Chad"))
+        nationList.add(Nation(221, R.drawable.flag_tf, "French Southern Territories"))
         nationList.add(Nation(222, R.drawable.flag_tg, "Togo"))
         nationList.add(Nation(223, R.drawable.flag_th, "Thailand"))
-        nationList.add(Nation(224, R.drawable.flag_tj, "Andorra"))
-        nationList.add(Nation(225, R.drawable.flag_tk, "Andorra"))
-        nationList.add(Nation(226, R.drawable.flag_tl, "Andorra"))
-        nationList.add(Nation(227, R.drawable.flag_tm, "Andorra"))
-        nationList.add(Nation(228, R.drawable.flag_tn, "Andorra"))
-        nationList.add(Nation(229, R.drawable.flag_to, "Andorra"))
+        nationList.add(Nation(224, R.drawable.flag_tj, "Tajikistan"))
+        nationList.add(Nation(225, R.drawable.flag_tk, "Tokelau"))
+        nationList.add(Nation(226, R.drawable.flag_tl, "Timor-Leste"))
+        nationList.add(Nation(227, R.drawable.flag_tm, "Turkmenistan"))
+        nationList.add(Nation(228, R.drawable.flag_tn, "Tunesia"))
+        nationList.add(Nation(229, R.drawable.flag_to, "Tonga"))
         nationList.add(Nation(230, R.drawable.flag_tr, "Turkey"))
-        nationList.add(Nation(231, R.drawable.flag_tt, "Andorra"))
-        nationList.add(Nation(232, R.drawable.flag_tv, "Andorra"))
-        nationList.add(Nation(233, R.drawable.flag_tw, "Andorra"))
-        nationList.add(Nation(234, R.drawable.flag_tz, "Andorra"))
-        nationList.add(Nation(235, R.drawable.flag_ua, "Andorra"))
-        nationList.add(Nation(236, R.drawable.flag_ug, "Andorra"))
-        nationList.add(Nation(237, R.drawable.flag_um, "Andorra"))
-        nationList.add(Nation(238, R.drawable.flag_us, "United States of America"))
+        nationList.add(Nation(231, R.drawable.flag_tt, "Trinidad and Tobago"))
+        nationList.add(Nation(232, R.drawable.flag_tv, "Tuvalu"))
+        nationList.add(Nation(233, R.drawable.flag_tw, "Taiwan"))
+        nationList.add(Nation(234, R.drawable.flag_tz, "Tanzania"))
+        nationList.add(Nation(235, R.drawable.flag_ua, "Ukraine"))
+        nationList.add(Nation(236, R.drawable.flag_ug, "Uganda"))
+        nationList.add(Nation(237, R.drawable.flag_um, "U.S. Minor Outlying Islands"))
+        nationList.add(Nation(238, R.drawable.flag_us, "U.S.A."))
         nationList.add(Nation(239, R.drawable.flag_uy, "Uruguay"))
-        nationList.add(Nation(240, R.drawable.flag_uz, "Andorra"))
-        nationList.add(Nation(241, R.drawable.flag_va, "Andorra"))
-        nationList.add(Nation(242, R.drawable.flag_vc, "Andorra"))
-        nationList.add(Nation(243, R.drawable.flag_ve, "Andorra"))
-        nationList.add(Nation(244, R.drawable.flag_vg, "Andorra"))
-        nationList.add(Nation(245, R.drawable.flag_vi, "Andorra"))
+        nationList.add(Nation(240, R.drawable.flag_uz, "Uzbekistan"))
+        nationList.add(Nation(241, R.drawable.flag_va, "Vatican City"))
+        nationList.add(Nation(242, R.drawable.flag_vc, "Saint Vincent and the Grenadines"))
+        nationList.add(Nation(243, R.drawable.flag_ve, "Venezuela"))
+        nationList.add(Nation(244, R.drawable.flag_vg, "British Virgin Islands"))
+        nationList.add(Nation(245, R.drawable.flag_vi, "U.S. Virgin Islands Andorra"))
         nationList.add(Nation(246, R.drawable.flag_vn, "Vietnam"))
-        nationList.add(Nation(247, R.drawable.flag_vu, "Andorra"))
-        nationList.add(Nation(248, R.drawable.flag_wf, "Andorra"))
-        nationList.add(Nation(249, R.drawable.flag_ws, "Andorra"))
-        nationList.add(Nation(250, R.drawable.flag_xk, "Andorra"))
-        nationList.add(Nation(251, R.drawable.flag_ye, "Andorra"))
-        nationList.add(Nation(252, R.drawable.flag_yt, "Andorra"))
-        nationList.add(Nation(253, R.drawable.flag_za, "Andorra"))
-        nationList.add(Nation(254, R.drawable.flag_zm, "Andorra"))
-        nationList.add(Nation(255, R.drawable.flag_zw, "Andorra"))
+        nationList.add(Nation(247, R.drawable.flag_vu, "Vanuatu"))
+        nationList.add(Nation(248, R.drawable.flag_wf, "Wallis and Futuna"))
+        nationList.add(Nation(249, R.drawable.flag_ws, "Samoa"))
+        nationList.add(Nation(250, R.drawable.flag_xk, "Kosovo"))
+        nationList.add(Nation(251, R.drawable.flag_ye, "Yemen"))
+        nationList.add(Nation(252, R.drawable.flag_yt, "Mayotte"))
+        nationList.add(Nation(253, R.drawable.flag_za, "South Africa"))
+        nationList.add(Nation(254, R.drawable.flag_zm, "Zambia"))
+        nationList.add(Nation(255, R.drawable.flag_zw, "Zimbabwe"))
         return nationList
-    }
-
-    fun getQuestions(): ArrayList<Question> {
-        val nationList = this.getNations()
-        val questionsList = ArrayList<Question>()
-
-        for (i in 1..10) {
-            var rand = Random.nextInt(0, nationList.size - 1)
-            val correctNation: Nation = nationList[rand]
-            nationList.removeAt(rand)
-
-            rand = Random.nextInt(0, nationList.size - 1)
-            val wrongNationOne: Nation = nationList[rand]
-            nationList.removeAt(rand)
-
-            rand = Random.nextInt(0, nationList.size - 1)
-            val wrongNationTwo: Nation = nationList[rand]
-            nationList.removeAt(rand)
-
-            rand = Random.nextInt(0, nationList.size - 1)
-            val wrongNationThree: Nation = nationList[rand]
-            nationList.removeAt(rand)
-
-            when (val correctAnswer = Random.nextInt(1, 4)) {
-                1 -> questionsList.add(Question(
-                    i, "What country does this flag belong to?",
-                    correctNation.image,
-                    correctNation.name,
-                    wrongNationOne.name,
-                    wrongNationTwo.name,
-                    wrongNationThree.name,
-                    correctAnswer
-                ))
-                2 -> questionsList.add(Question(
-                    i, "What country does this flag belong to?",
-                    correctNation.image,
-                    wrongNationOne.name,
-                    correctNation.name,
-                    wrongNationTwo.name,
-                    wrongNationThree.name,
-                    correctAnswer
-                ))
-                3 -> questionsList.add(Question(
-                    i, "What country does this flag belong to?",
-                    correctNation.image,
-                    wrongNationOne.name,
-                    wrongNationTwo.name,
-                    correctNation.name,
-                    wrongNationThree.name,
-                    correctAnswer
-                ))
-                4 -> questionsList.add(Question(
-                    i, "What country does this flag belong to?",
-                    correctNation.image,
-                    wrongNationOne.name,
-                    wrongNationTwo.name,
-                    wrongNationThree.name,
-                    correctNation.name,
-                    correctAnswer
-                ))
-            }
-        }
-        return questionsList
     }
 }
