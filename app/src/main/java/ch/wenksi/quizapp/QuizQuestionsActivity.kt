@@ -35,7 +35,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun answerView(answer: Int, drawableView: Int) {
-        when(answer) {
+        when (answer) {
             1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
             2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
             3 -> tv_option_three.background = ContextCompat.getDrawable(this, drawableView)
@@ -85,18 +85,19 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
             R.id.tv_option_one -> this.selectedOptionView(tv_option_one, 1)
             R.id.tv_option_two -> this.selectedOptionView(tv_option_two, 2)
             R.id.tv_option_three -> this.selectedOptionView(tv_option_three, 3)
             R.id.tv_option_four -> this.selectedOptionView(tv_option_four, 4)
             R.id.btn_submit -> {
-                if(this.submitted) { // set questions
+                if (this.submitted) { // set questions
                     this.currentPosition++
                     when {
                         this.currentPosition <= this.questionsList!!.size -> {
                             setQuestion()
-                        } else -> {
+                        }
+                        else -> {
                             val intent = Intent(this, ResultActivity::class.java)
                             intent.putExtra(Constants.USER_NAME, this.userName)
                             intent.putExtra(Constants.CORRECT_ANSWERS, this.correctAnswers)
@@ -105,21 +106,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             finish()
                         }
                     }
-                } else if (this.selectedOptionPosition == 0) {
-                    Toast.makeText(
-                        this,
-                        "Select your answer",
-                        Toast.LENGTH_SHORT).show()
-                } else { // submit answer
+                } else if (this.selectedOptionPosition != 0) { // do nothing
                     val question = this.questionsList?.get(this.currentPosition - 1)
-                    if(question!!.correctAnswer != this.selectedOptionPosition) {
-                        Toast.makeText(
-                            this,
-                            "Wrong answer",
-                            Toast.LENGTH_SHORT).show()
-                    } else {
+                    if (question!!.correctAnswer == this.selectedOptionPosition)
                         this.correctAnswers++
-                    }
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
 
                     btn_submit.text = if (this.currentPosition == this.questionsList!!.size)
@@ -129,6 +119,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-    }
 
+    }
 }
