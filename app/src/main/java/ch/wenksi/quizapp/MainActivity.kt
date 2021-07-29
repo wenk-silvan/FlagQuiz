@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             "Please enter your name", Toast.LENGTH_SHORT)
         btn_start.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
-                if (!toast_name.view.isShown)
+                if (!toast_name.view?.isShown!!)
                     toast_name.show()
             } else {
                 val intent = Intent(this, QuizQuestionsActivity::class.java)
